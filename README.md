@@ -23,7 +23,7 @@ scripts/openssl-ip.cnf   # OpenSSL config for IP CN
 1. Clone the repository:
    ```bash
    git clone https://github.com/dewillepl/livesync-couchdb-tls
-   cd obsidian-livesync
+   cd livesync-couchdb-tls
    ```
 
 2. Edit `build.env`:  
