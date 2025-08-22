@@ -20,7 +20,7 @@ RUN mkdir -p /opt/couchdb/init /opt/couchdb/etc/ssl /certs /ca \
 RUN openssl req -x509 -new -nodes -days 3650 -newkey rsa:4096 \
       -keyout /opt/couchdb/etc/ssl/rootCA.key \
       -out /opt/couchdb/etc/ssl/rootCA.crt \
-      -subj "/CN=ObsidianLiveSync-CA" \
+      -subj "/CN=Livesync-CouchDB-CA" \
       -sha256 \
     && cp /opt/couchdb/etc/ssl/rootCA.crt /ca/rootCA.crt
 

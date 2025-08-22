@@ -90,7 +90,7 @@ curl -u admin:password123 https://localhost:6984/_all_dbs
    bash scripts/get-rootCA.sh livesync-couchdb-tls
    ```
 
-   This generates `livesync-couchdb-tls-rootCA.tar.gz` containing:  
+   This creates a CA folder with individual certificates (PEM, DER, CRT) and generates "livesync-rootCA.tar.gz" containing them for Windows, Apple devices, and Android.
    - **PEM** → Windows  
    - **DER** → Apple devices  
    - **CRT** → Android  
