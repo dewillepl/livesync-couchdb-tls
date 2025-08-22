@@ -12,13 +12,12 @@ Designed for **LAN environments** and **mobile devices** that require TLS.
 ## 📂 Project Structure
 
 .  
-├── build.env # SSL Common Name (CN) configuration  
-├── Dockerfile # Docker image build instructions  
-└── scripts/  
-├── entrypoint.sh # Container startup: CouchDB + SSL setup  
-├── get-rootCA.sh # Extract Root CA certs from container  
-├── openssl-dns.cnf # OpenSSL config for DNS CN  
-└── openssl-ip.cnf # OpenSSL config for IP CN
+build.env # SSL Common Name (CN) configuration  
+Dockerfile # Docker image build instructions  
+scripts/entrypoint.sh # Container startup: CouchDB + SSL setup  
+scripts/get-rootCA.sh # Extract Root CA certs from container  
+scripts/openssl-dns.cnf # OpenSSL config for DNS CN  
+scripts/openssl-ip.cnf # OpenSSL config for IP CN
 
 ---
 
