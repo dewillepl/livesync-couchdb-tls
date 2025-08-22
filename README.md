@@ -10,24 +10,23 @@ Designed for **LAN environments** and **mobile devices** that require TLS.
 ---
 
 ## 📂 Project Structure
-
-.  
-build.env # SSL Common Name (CN) configuration  
-Dockerfile # Docker image build instructions  
-scripts/entrypoint.sh # Container startup: CouchDB + SSL setup  
-scripts/get-rootCA.sh # Extract Root CA certs from container  
-scripts/openssl-dns.cnf # OpenSSL config for DNS CN  
-scripts/openssl-ip.cnf # OpenSSL config for IP CN
-
+```
+build.env                # SSL Common Name (CN) configuration  
+Dockerfile               # Docker image build instructions  
+scripts/entrypoint.sh    # Container startup: CouchDB + SSL setup  
+scripts/get-rootCA.sh    # Extract Root CA certs from container  
+scripts/openssl-dns.cnf  # OpenSSL config for DNS CN  
+scripts/openssl-ip.cnf   # OpenSSL config for IP CN
+```
 ---
 
 ## 🛠️ Build Instructions
 
 1. Clone the repository:
-
-   git clone https://your_repo_url_here
+```bash
+   git clone https://github.com/dewillepl/livesync-couchdb-tls
    cd obsidian-livesync
-
+```
 2. Edit `build.env`:
     
     - `CN_DNS` → FQDN (for domain-based access)
@@ -35,26 +34,25 @@ scripts/openssl-ip.cnf # OpenSSL config for IP CN
     - `CN_IP` → IP address (for direct IP access)
         
 3. Build the image:
-    
+    ```bash
     docker build -t obsidian-livesync .
-
----
+   ```
 
 ## 🚀 Run Instructions
 
 Start the container with CouchDB credentials and SSL CN:
 
+```
 docker run -d --name obsidian-livesync \
   -p 5984:5984 -p 6984:6984 \
   -e COUCHDB_USER=admin \
   -e COUCHDB_PASSWORD=password123 \
   -e COUCHDB_CN=domain.example \
   obsidian-livesync:latest
+```
 
-- `COUCHDB_USER` → CouchDB admin username
-    
+- `COUCHDB_USER` → CouchDB admin username    
 - `COUCHDB_PASSWORD` → CouchDB admin password
-    
 - `COUCHDB_CN` → IP or FQDN for SSL certificate generation
     
 ---
@@ -62,35 +60,32 @@ docker run -d --name obsidian-livesync \
 ## ✅ Verification
 
 Check logs:
-
+```
 docker logs obsidian-livesync
-
+```
 
 Test CouchDB endpoints:
-
+```
 curl -u admin:password123 http://localhost:5984/_all_dbs
 curl -u admin:password123 https://localhost:6984/_all_dbs
+```
 
 ---
 
 ## 🔗 Using with Obsidian LiveSync Plugin
 
 1. Extract Root CA certificates:
-    
+    ```
     bash scripts/get-rootCA.sh obsidian-livesync
+    ```
     
-    This generates `livesync-rootCA.tar.gz` containing:
-    
+    This generates `livesync-rootCA.tar.gz` containing: 
     - **PEM** → Windows
-        
     - **DER** → Apple devices
-        
     - **CRT** → Android
         
 2. Import the certs into your device’s trusted store.
-    
 3. Configure LiveSync plugin → Server address, port, and credentials.
-    
 4. Test the connection (should work with TLS).
     
 ---
@@ -98,13 +93,9 @@ curl -u admin:password123 https://localhost:6984/_all_dbs
 ## ⚙️ Internal Logic
 
 - Built on **Debian 12 + CouchDB**
-    
 - SSL Root CA created at build, runtime certs generated on start
-    
 - Smart CN detection (IP vs DNS)
-    
 - Entrypoint handles CouchDB init + SSL config
-    
 - Root CA & certs available via **volume mounts**
     
 ---
@@ -112,4 +103,3 @@ curl -u admin:password123 https://localhost:6984/_all_dbs
 ## 📜 License
 
 MIT — use freely for personal or commercial projects.
-
