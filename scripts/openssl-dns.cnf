@@ -1,0 +1,11 @@
+#  scripts/openssl-dns.cnf
+[req]
+distinguished_name=req_distinguished_name
+x509_extensions=v3_req
+prompt=no
+
+[req_distinguished_name]
+CN=__CN_DNS__
+
+[v3_req]
+subjectAltName=DNS:__CN_DNS__

@@ -1,0 +1,11 @@
+# scripts/openssl-ip.cnf
+[req]
+distinguished_name=req_distinguished_name
+x509_extensions=v3_req
+prompt=no
+
+[req_distinguished_name]
+CN=__CN_IP__
+
+[v3_req]
+subjectAltName=IP:__CN_IP__
