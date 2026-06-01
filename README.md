@@ -1,4 +1,4 @@
-## 📦 Obsidian LiveSync CouchDB Docker Image
+## Obsidian LiveSync CouchDB Docker Image
 
 Run [Obsidian Self-Hosted LiveSync](https://github.com/vrtmrz/obsidian-livesync) inside Docker with automatic SSL support.  
 Designed for **LAN environments** and **mobile devices** that require TLS.
@@ -7,7 +7,7 @@ Designed for **LAN environments** and **mobile devices** that require TLS.
 - Works seamlessly **behind reverse proxies** (e.g., Nginx + Let's Encrypt) for WAN/public deployments.
 - Works on Windows with Docker Desktop.
 
-## 📂 Project Structure
+## Project Structure
 
 ```
 build.env                # SSL Common Name (CN) configuration
@@ -18,7 +18,7 @@ scripts/openssl-dns.cnf  # OpenSSL config for DNS CN
 scripts/openssl-ip.cnf   # OpenSSL config for IP CN
 ```
 
-## 🛠️ Build Instructions
+## Build Instructions
 
 1. Clone the repository:
    ```bash
@@ -35,7 +35,7 @@ scripts/openssl-ip.cnf   # OpenSSL config for IP CN
    docker build -t livesync-couchdb-tls .
    ```
 
-## 🚀 Run Instructions
+## Run Instructions
 
 Start the container with CouchDB credentials and SSL CN:
 
@@ -70,7 +70,7 @@ services:
       COUCHDB_CN: domain.example
 ```
 
-## ✅ Verification
+## Verification
 
 Check logs:
 ```bash
@@ -83,7 +83,7 @@ curl -u admin:password123 http://localhost:5984/_all_dbs
 curl -u admin:password123 https://localhost:6984/_all_dbs
 ```
 
-## 🔗 Using with Obsidian LiveSync Plugin
+## Using with Obsidian LiveSync Plugin
 
 1. Extract Root CA certificates:
    ```bash
@@ -99,7 +99,7 @@ curl -u admin:password123 https://localhost:6984/_all_dbs
 3. Configure LiveSync plugin → Server address, port, and credentials.  
 4. Test the connection (should work with TLS).
 
-## 🪟 Running & Building on Windows (Line Endings Fix)
+## Running & Building on Windows (Line Endings Fix)
 
 If you build this image on Windows (Docker Desktop), ensure that **all shell scripts (`.sh`) and OpenSSL config files (`.cnf`) in the `scripts` directory use Unix (LF) line endings**.  
 By default, Git on Windows may convert them to Windows (CRLF), which breaks execution inside the container.
@@ -161,7 +161,7 @@ services:
 
 This will ensure your container builds and runs correctly on Windows.
 
-## ⚙️ Internal Logic
+## Internal Logic
 
 - Built on **Debian 12 + CouchDB**  
 - SSL Root CA created at build, runtime certs generated on start  
@@ -169,6 +169,6 @@ This will ensure your container builds and runs correctly on Windows.
 - Entrypoint handles CouchDB init + SSL config  
 - Root CA certs available via import script
 
-## 📜 License
+## License
 
 MIT — use freely for personal or commercial projects.
